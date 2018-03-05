@@ -12,8 +12,8 @@ timezone: EST
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: http://baev.work
-root: /
+url: https://gswcm.github.io/portfolio/
+root: /portfolio/
 permalink: :year/:month/:day/:title/
 permalink_defaults:
 

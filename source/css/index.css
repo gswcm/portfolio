@@ -1,8 +1,18 @@
 .column {
 	height: 100%;
 }
+.spacer {
+	height: 150px;
+	margin: 0;
+	padding: 0;
+}
 .header {
 	flex-grow: 1;
+}
+.main {
+	position: absolute;
+	top: 0;
+	left: 0;
 }
 h1,h2,h3,h4 {
 	font-family: 'Open Sans Condensed', sans-serif;
