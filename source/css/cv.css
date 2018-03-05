@@ -1,0 +1,21 @@
+.left a {
+	text-decoration: none;		
+	font-family: monospace;
+}
+.left img {
+	width: 50%;
+	max-width: 150px;
+	min-width: 100px;
+}
+.vline {
+	border-left: 2px dashed;
+}
+* {
+	font-family: 'Titillium Web', sans-serif;
+}
+.content {
+	font-size: small;
+}
+input:checked + .content{
+	display: block !important;
+}
