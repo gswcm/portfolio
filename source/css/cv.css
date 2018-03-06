@@ -19,3 +19,11 @@
 input:checked + .content{
 	display: block !important;
 }
+@media print {
+	@page {			
+		margin: 20mm 0;
+	}
+	article div {
+		page-break-inside: avoid;
+	}
+}
