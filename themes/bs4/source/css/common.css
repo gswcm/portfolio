@@ -13,9 +13,8 @@ html, body {
 }
 @media print {
 	@page {			
-		margin: 20mm 0;
+		margin: 20mm;
 	}
-	article,
 	article div {
 		page-break-inside: avoid;
 	}
@@ -23,4 +22,6 @@ html, body {
 		text-decoration: none !important;
 	}
 }
-
+* {
+	font-family: 'Titillium Web', sans-serif;
+}

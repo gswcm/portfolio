@@ -13,6 +13,14 @@
 .content {
 	font-size: small;
 }
-input:checked + .content{
+input:checked + .content {
 	display: block !important;
+}
+@media print {
+	.content {
+		display: block !important;
+	}
+	article.experience {
+		page-break-before: always;
+	}
 }

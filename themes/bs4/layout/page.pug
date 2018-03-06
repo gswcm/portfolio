@@ -1,0 +1,8 @@
+extends template
+
+block content
+	div.container.mt-3.py-3 !{page.content}
+	script.
+		$(document).ready(() => {
+			$(`.#{page.navItem}`).addClass('active');
+		})
