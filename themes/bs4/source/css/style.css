@@ -6,3 +6,21 @@ html, body {
 .navbar-brand .fa-home {
 	color: rgba(0,0,0,0.5);
 }
+.nav-link.active {
+	color: royalblue !important;
+	font-weight: bold;
+	border-bottom: 2px solid royalblue;
+}
+@media print {
+	@page {			
+		margin: 20mm 0;
+	}
+	article,
+	article div {
+		page-break-inside: avoid;
+	}
+	a {
+		text-decoration: none !important;
+	}
+}
+

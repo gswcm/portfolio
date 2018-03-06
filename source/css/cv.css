@@ -10,20 +10,9 @@
 .vline {
 	border-left: 2px dashed;
 }
-* {
-	font-family: 'Titillium Web', sans-serif;
-}
 .content {
 	font-size: small;
 }
 input:checked + .content{
 	display: block !important;
-}
-@media print {
-	@page {			
-		margin: 20mm 0;
-	}
-	article div {
-		page-break-inside: avoid;
-	}
 }
