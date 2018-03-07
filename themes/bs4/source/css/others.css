@@ -2,6 +2,10 @@ p {
 	text-align: justify;
 }
 
-h2 {
+h2:not(:first-child) {
 	margin-top: 1.5em;
+}
+
+h2 ~ p {
+	padding-left: 2em;
 }
