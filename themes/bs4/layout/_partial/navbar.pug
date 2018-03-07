@@ -1,7 +1,6 @@
 nav.navbar.sticky-top.navbar-expand-sm.navbar-light.bg-light.d-print-flex.justify-content-between
 	a.navbar-brand(href="/")
-		i.fas.fa-home.d-print-none
-		span.d-none.d-print-inline-block Simon Baev's Portfolio
+		span #{page.layout !== 'landing' ? `Simon Baev's Portfolio` : ''} 
 	button.navbar-toggler(type="button" data-toggle="collapse" data-target="#navbar-content" aria-expanded="false" aria-label="Toggle navigation")
 		span.navbar-toggler-icon
 	.d-inline-block

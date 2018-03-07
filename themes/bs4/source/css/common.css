@@ -6,11 +6,18 @@ html, body {
 .navbar-brand .fa-home {
 	color: rgba(0,0,0,0.5);
 }
-.nav-link.active {
+.nav-link:hover {
+	color: royalblue !important;
+	font-weight: bold;
+}
+
+.nav-link.active,
+.nav-link:active {
 	color: royalblue !important;
 	font-weight: bold;
 	border-bottom: 2px solid royalblue;
 }
+
 @media print {
 	@page {			
 		margin: 20mm;

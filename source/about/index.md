@@ -1,4 +1,4 @@
-layout: page
+layout: others
 title: About Me
 navItem: nav-item-about
 ---
@@ -7,3 +7,5 @@ I was born and raised in **Russia** where I also received my basic education inc
 
 ## Professional intersets
 For many years I was engaged with a variety of engineering problems including but not limited to development of control algorithms, signal processing, robotics, etc. About 5 years ago I started learning JS and CSS to customize UI (by utilizing [Tampermonkey](https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo?hl=en) browser extension) of one web resource that was mandatory in our University. 
+
+
