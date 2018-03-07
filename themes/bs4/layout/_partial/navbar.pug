@@ -1,13 +1,12 @@
-nav.navbar.sticky-top.navbar-expand-sm.navbar-light.bg-light.d-print-flex.justify-content-between
+nav.navbar.sticky-top.navbar-expand-sm.navbar-light.bg-light.d-flex.d-print-flex.justify-content-between
 	a.navbar-brand(href="/")
 		span #{page.layout !== 'landing' ? `Simon Baev's Portfolio` : ''} 
 	button.navbar-toggler(type="button" data-toggle="collapse" data-target="#navbar-content" aria-expanded="false" aria-label="Toggle navigation")
 		span.navbar-toggler-icon
-	.d-inline-block
-		#navbar-content.collapse.navbar-collapse.justify-content-end
-			.navbar-nav
-				a.nav-item-cv.nav-item.nav-link.ml-auto(href="/cv") CV
-				a.btn.nav-item.nav-link.disabled.d-none.d-sm-inline-block(href="") |
-				a.nav-item-about.nav-item.nav-link.ml-auto(href="/about") About Me
-				a.btn.nav-item.nav-link.disabled.d-none.d-sm-inline-block(href="") |
-				a.nav-item-project.nav-item.nav-link.ml-auto(href="/project") One recent project...
+	#navbar-content.collapse.navbar-collapse.justify-content-end
+		.navbar-nav
+			a.nav-item-cv.nav-item.nav-link.ml-auto(href="/cv") CV
+			a.btn.nav-item.nav-link.disabled.d-none.d-sm-inline-block(href="") |
+			a.nav-item-about.nav-item.nav-link.ml-auto(href="/about") About Me
+			a.btn.nav-item.nav-link.disabled.d-none.d-sm-inline-block(href="") |
+			a.nav-item-project.nav-item.nav-link.ml-auto(href="/project") One recent project...

@@ -11,7 +11,7 @@
 	border-left: 2px dashed;
 }
 .content {
-	font-size: small;
+	font-size: smaller;
 }
 input:checked + .content {
 	display: block !important;
@@ -20,7 +20,7 @@ input:checked + .content {
 	.content {
 		display: block !important;
 	}
-	article.experience {
+	.experience {
 		page-break-before: always;
 	}
 }

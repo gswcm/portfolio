@@ -21,8 +21,9 @@ html, body {
 @media print {
 	@page {			
 		margin: 20mm;
+		/* min-width: 1000px !important; */
 	}
-	article div {
+	article > section {
 		page-break-inside: avoid;
 	}
 	a {
@@ -31,4 +32,5 @@ html, body {
 }
 * {
 	font-family: 'Titillium Web', sans-serif;
+	font-size: 1.05rem;
 }
