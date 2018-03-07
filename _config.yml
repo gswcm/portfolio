@@ -78,6 +78,6 @@ theme: bs4
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: git
-  repo: https://github.com/gswcm/portfolio.git
-  branch: gh-pages
+  repo: https://github.com/gswcm/gswcm.github.io.git
+  branch: master
 
