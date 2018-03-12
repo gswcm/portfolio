@@ -1,19 +1,22 @@
-.column {
-	height: 100%;
-}
 .spacer {
-	height: 150px;
-	margin: 0;
-	padding: 0;
+	width: 100%;
 }
-.header {
-	flex-grow: 1;
+.title {
+	min-height: 3em;
+	z-index: 2000;
 }
-.main {
-	position: absolute;
-	top: 0;
-	left: 0;
+@media screen and (orientation:portrait) {
+	.spacer {
+		height: 3em;
+	}
 }
+
+@media screen and (orientation:landscape) {
+	.spacer {
+		height: 1em;
+	}
+}
+
 h1,h2,h3,h4 {
 	font-family: 'Open Sans Condensed', sans-serif;
 }
