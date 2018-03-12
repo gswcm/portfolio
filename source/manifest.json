@@ -3,7 +3,7 @@
 	"short_name": "Simon Baev",
 	"start_url": "/",
 	"lang": "en-US",
-	"display": "standalone",
+	"display": "fullscreen",
 	"background_color": "#fff",
 	"description": "Professional portfolio of Simon Baev",
 	"icons": [
