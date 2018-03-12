@@ -2,19 +2,45 @@
 	width: 100%;
 }
 .title {
-	min-height: 3em;
-	z-index: 2000;
+	z-index: 10;
+	position: relative;
+	left: 15vw;
+	top: 15vh;
 }
 @media screen and (orientation:portrait) {
-	.spacer {
-		height: 3em;
+	
+	@media (max-width: 400px) {
+		.title > h1 {
+			font-size: 1.5rem;
+		}
+		.title > h4 {
+			font-size: 0.9rem;
+		}
 	}
 }
 
 @media screen and (orientation:landscape) {
-	.spacer {
-		height: 1em;
+	.title {
+		left: 10vw;
+		top: 20vh;
 	}
+}
+
+@media (min-aspect-ratio: 16/10) {
+	.title {
+		left: 10vw;
+		top: 5vh;
+	}
+	.title > h1 {
+		font-size: 1.5rem;
+	}
+	.title > h4 {
+		font-size: 0.9rem;
+	}
+}
+
+.banner {
+	z-index: 0;
 }
 
 h1,h2,h3,h4 {
