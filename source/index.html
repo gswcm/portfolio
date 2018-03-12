@@ -14,5 +14,30 @@ layout: landing
 		</div>
 		<div class="col"></div>
 	</div>
-	<img src="/images/banner_bw.png" class="img-fluid banner" alt="background image showing sign 'help keep our area clean'">
+	<!-- <img src="/images/banner_bw.png" class="img-fluid banner" alt="background image showing sign 'help keep our area clean'"> -->
+	<picture 
+		class="img-fluid banner" 
+		alt="background image showing sign 'help keep our area clean'">
+		<source 
+			type="image/webp"
+			srcset="
+				/images/banner_bw_y2vh2r_c_scale,w_360.webp 360w,
+				/images/banner_bw_y2vh2r_c_scale,w_1075.webp 1075w,
+				/images/banner_bw_y2vh2r_c_scale,w_1536.webp 1536w,
+				/images/banner_bw_y2vh2r_c_scale,w_1826.webp 1826w,
+				/images/banner_bw_y2vh2r_c_scale,w_1920.webp 1920w">
+		<source 
+			type="image/png"
+			srcset="
+				/images/banner_bw_y2vh2r_c_scale,w_360.png 360w,
+				/images/banner_bw_y2vh2r_c_scale,w_1075.png 1075w,
+				/images/banner_bw_y2vh2r_c_scale,w_1536.png 1536w,
+				/images/banner_bw_y2vh2r_c_scale,w_1826.png 1826w,
+				/images/banner_bw_y2vh2r_c_scale,w_1920.png 1920w">
+		<img 
+			src=
+				"/images/banner_bw.png" 
+			alt="background image showing sign 'help keep our area clean'" 
+			class="img-fluid banner">
+	</picture>
 </div>

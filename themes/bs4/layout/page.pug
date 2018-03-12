@@ -2,10 +2,8 @@ extends template
 
 block content
 	div.container.mt-3.py-3 !{page.content}
+block postfix
 	script.
 		$(document).ready(() => {
 			$(`.#{page.navItem}`).addClass('active');
 		})
-
-block postfix
-	script(src="/js/service-worker-registration.js")
