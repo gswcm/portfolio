@@ -19,4 +19,4 @@ Putting it altogether: my professional achievements as a higher educator, the re
 I like to work in an environment where my skills can be appreciated and used at full capacity. I enjoy the prototyping phase as much as I enjoy finishing up a project and releasing it to the client. My mind is open for new technologies but I prefer learning something that has a great potential. I like to listen others and I like to be listened. I value my time and I like it to be valued by others. 
 
 ## Personal
-I am married with 2 kids, have a dog and ride a motorcycle. I like to walk, swim, and play basketball. I enjoy different kinds of music ranging from Deep Purple and AC/DC to a variety of electron beats. I like Alien[s] more than Star Wars and Star Trek. Years ago I gave up with social networking.
+I am married with two kids, have a dog and ride a motorcycle. I like to walk, swim, and play basketball. I enjoy different kinds of music ranging from Deep Purple and AC/DC to a variety of electronic beats. I like Alien[s] more than Star Wars and Star Trek. Years ago I gave up with social networking.
