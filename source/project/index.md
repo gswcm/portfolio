@@ -13,6 +13,12 @@ navItem: nav-item-project
 	- [Technology](#technology)
 	- [URLs and Deployment](#urls-and-deployment)
 	- [Normal user workflow](#normal-user-workflow)
+	- [Admin user workflow](#admin-user-workflow)
+		- [Who is an admin?](#who-is-an-admin)
+		- [Access of the admin interface](#access-of-the-admin-interface)
+		- [Authentication mechanism](#authentication-mechanism)
+		- [Admin interface features](#admin-interface-features)
+- [PiTron &mdash; a Raspberry Flavored Scantron Controller](#pitron-mdash-a-raspberry-flavored-scantron-controller)
 
 <!-- /TOC -->
 
@@ -117,3 +123,73 @@ Form validation routines require clearing up all errors in order for the submiss
 Once the form is completed and submitted, the registration is treated as _unconfirmed_ or _pending_ until after the sponsor would follow confirmation link from the automated e-mail. Should this happen within the grace period, the same registration info will become available for the last moment editing and final submission.
 
 **Important note**: The registration process allows for unrestricted submission of registration info. All unconfirmed (pending) registrations expire in 1 day. The registration process is password-free. 
+
+<a id="markdown-admin-user-workflow" name="admin-user-workflow"></a>
+### Admin user workflow
+
+<a id="markdown-who-is-an-admin" name="who-is-an-admin"></a>
+#### Who is an admin?
+The _admin_ role is hardcoded to map selected e-mail addresses and is defined in `./backend/lib/admins.js` file. The _admin_ role is associated with _tournament organizer(s)_.
+
+<a id="markdown-access-of-the-admin-interface" name="access-of-the-admin-interface"></a>
+#### Access of the admin interface
+The _admin_ interface will be exposed to users listed as _admins_ (see above) and accessing the registration portal at `/start` URL. Such users will be prompted to follow `/admin` link to access the actual _admin_ interface. Alternatively, they can play the role of a _normal user_ and continue with _normal user workflow_ as discussed above.
+
+<a id="markdown-authentication-mechanism" name="authentication-mechanism"></a>
+#### Authentication mechanism
+Access to the _admin_ interface is restricted to _authenticated_ users only. The _admin_ membership defined in the `./backend/lib/admins.js` file sets a _necessary_ but not a _sufficient_ condition. The _admin_ page available at `/admin` exposes two variants of the content matching _authorized_, and  _non-authorized_ sessions. The _non-authorized_ variant is present by default until after valid _admin credentials_, i.e. e-mail and password are entered. There is no _Submit_  button that can be clicked to initiate credential validation, instead, a mechanism relying on `lodash.debounce()` with a delay of 500 ms is used to counteract possible bruteforce attack. 
+
+Having specified valid _admin credentials_ a user exposed to the _authorized_ version of the _admin_ interface that is discussed in details in the next section. The prompt for entering email/password is no longer shown, and is replaced by the real content of the page. 
+
+This application does not rely on HTTP sessions for authentication purposes. It is done on purpose, to explore the paradigm of the _stateless_ backend &mdash; a better fit for scalable implementations. Every request sent from the _admin_ interface to the _admin_ API includes previously entered credentials that are validated prior performing requested _admin_ task. This approach mimics **JWT** way of sending authentication data along with every request, but does not facilitate _digital signatures_ for data integrity validation. 
+
+It is worth stating that since credential data are passed to the backend with no encryption, the **app has to be served using HTTPs protocol** configured at the Nginx level. 
+
+<a id="markdown-admin-interface-features" name="admin-interface-features"></a>
+#### Admin interface features
+The _admin_ interface features 5 tabs:
+
+- **Records** tab allows to work (add/delete/edit) with _team registrations_. Organizers can navigate through the collection of submitted registrations by means of setting up **flexible filters**. Any combination of the following criteria can be utilized to display a subset of all submitted registrations:
+
+	- Paid vs. non-Paid registration
+	- Substring seen in the sponsor's e-mail address
+	- Substring seen in the sponsor's name
+	- Substring seen in the School name
+	- School division (any given school belongs to a certain _division_)
+	- Whether or not the sponsor is also an admin 
+	- Whether or not the registration has been confirmed via e-mail
+ 
+  An exampled view of the _Records_ tab is illustrated on this screenshot: [http://nimb.ws/hR9p06](http://nimb.ws/hR9p06). 
+
+ On top of ability to display a subset of all registration records, this interface allows to work with individually _selected team_. More specifically, it is possible to 
+
+	- _confirm_ a registration in case when (for some reasons) team sponsor did not receive a confirmation e-mail
+	- _delete_ a registration if one had been made by mistake or the team is no longer willing to participate in the tournament
+	- _copy_ e-mail address of the team sponsor to the clipboard and then use it to compose an e-mail
+	- _download_ a PDF file that needs to be printed on Scantron sheets for identification purposes
+
+ The _download_ action can be applied to the entire list of currently filtered teams, should admin needs to prepare a PDF, say for the entire division. 
+ 
+ The introduction of an ability to print student identification data directly on the Scantron sheets has significantly simplified the tournament preparation phase. In the past, organizers would have to print named labels and stick them onto each Scantron sheet. Moreover, specific IDs had to be _imprinted_ (4 marks made by #2 pencil) by hands while leaving great opportunity for a typo or other kinds of mistakes. With the introduction of direct printing on Scantron sheets these problems no longer affect the preparation phase. 
+
+- **Questions** tab allows to edit _tournament questions_, which is to specify _category_ and answer _key_ for every given question. There are 40 questions ranging 5 different categories and allowing 5 possible answers with only one answer being considered as correct. 
+
+ An exampled view of the _Questions_ tab is illustrated on this screenshot: [http://nimb.ws/3j1nQJ](http://nimb.ws/3j1nQJ)
+
+- **Scantron** tab allows to interact with **Scantron controller** discussed in the [dedicated section of this document](#pitron-mdash-a-raspberry-flavored-scantron-controller) below. Also it allows to edit a set of scan records currently stored in the database. Taking into account the possibility of submitting duplicated scan records, the interface introduces 2 ways of uploading scan data to the database: 
+	
+	- Submit the data while _skipping_ duplicates
+	- Submit the data while _overriding_ duplicates
+
+ An exampled view of the _Scantron_ tab is illustrated on this screenshot: [http://nimb.ws/L1SoPF](http://nimb.ws/L1SoPF)
+
+- **Results** tab mimics presentation of the **Results** page available at `/stats` while adding a number of extra features
+	
+	- Tournament results processing **log** that includes information on _processing errors_ and a list of _no show_ students. The _no show_ list can be filtered with respect to _student id_ or _student name_.
+	- Ability to augment tournament results by associating "ciphering total" value assigned to each team on the basis of team-level competition. 
+
+ An exampled view of the _Results_ tab is illustrated on this screenshot: [http://nimb.ws/6ivMpb](http://nimb.ws/6ivMpb)
+
+
+<a id="markdown-pitron-mdash-a-raspberry-flavored-scantron-controller" name="pitron-mdash-a-raspberry-flavored-scantron-controller"></a>
+## PiTron &mdash; a Raspberry Flavored Scantron Controller
