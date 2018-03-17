@@ -149,47 +149,46 @@ It is worth stating that since credential data are passed to the backend with no
 #### Admin interface features
 The _admin_ interface features 5 tabs:
 
-- **Records** tab allows to work (add/delete/edit) with _team registrations_. Organizers can navigate through the collection of submitted registrations by means of setting up **flexible filters**. Any combination of the following criteria can be utilized to display a subset of all submitted registrations:
+-	**Records** tab allows to work (add/delete/edit) with _team registrations_. Organizers can navigate through the collection of submitted registrations by means of setting up **flexible filters**. Any combination of the following criteria can be utilized to display a subset of all submitted registrations:
 
-	- Paid vs. non-Paid registration
-	- Substring seen in the sponsor's e-mail address
-	- Substring seen in the sponsor's name
-	- Substring seen in the School name
-	- School division (any given school belongs to a certain _division_)
-	- Whether or not the sponsor is also an admin 
-	- Whether or not the registration has been confirmed via e-mail
+	-	Paid vs. non-Paid registration
+	-	Substring seen in the sponsor's e-mail address
+	-	Substring seen in the sponsor's name
+	-	Substring seen in the School name
+	-	School division (any given school belongs to a certain _division_)
+	-	Whether or not the sponsor is also an admin 
+	-	Whether or not the registration has been confirmed via e-mail
  
-  An exampled view of the _Records_ tab is illustrated on this screenshot: [http://nimb.ws/hR9p06](http://nimb.ws/hR9p06). 
+	An exampled view of the _Records_ tab is illustrated on this screenshot: [http://nimb.ws/hR9p06](http://nimb.ws/hR9p06). 
 
- On top of ability to display a subset of all registration records, this interface allows to work with individually _selected team_. More specifically, it is possible to 
+	On top of ability to display a subset of all registration records, this interface allows to work with individually _selected team_. More specifically, it is possible to
+	
+	-	_confirm_ a registration in case when (for some reasons) team sponsor did not receive a confirmation e-mail
+	-	_delete_ a registration if one had been made by mistake or the team is no longer willing to participate in the tournament
+	-	_copy_ e-mail address of the team sponsor to the clipboard and then use it to compose an e-mail
+	-	_download_ a PDF file that needs to be printed on Scantron sheets for identification purposes
 
-	- _confirm_ a registration in case when (for some reasons) team sponsor did not receive a confirmation e-mail
-	- _delete_ a registration if one had been made by mistake or the team is no longer willing to participate in the tournament
-	- _copy_ e-mail address of the team sponsor to the clipboard and then use it to compose an e-mail
-	- _download_ a PDF file that needs to be printed on Scantron sheets for identification purposes
-
- The _download_ action can be applied to the entire list of currently filtered teams, should admin needs to prepare a PDF, say for the entire division. 
+	The _download_ action can be applied to the entire list of currently filtered teams, should admin needs to prepare a PDF, say for the entire division. 
  
- The introduction of an ability to print student identification data directly on the Scantron sheets has significantly simplified the tournament preparation phase. In the past, organizers would have to print named labels and stick them onto each Scantron sheet. Moreover, specific IDs had to be _imprinted_ (4 marks made by #2 pencil) by hands while leaving great opportunity for a typo or other kinds of mistakes. With the introduction of direct printing on Scantron sheets these problems no longer affect the preparation phase. 
+	The introduction of an ability to print student identification data directly on the Scantron sheets has significantly simplified the tournament preparation phase. In the past, organizers would have to print named labels and stick them onto each Scantron sheet. Moreover, specific IDs had to be _imprinted_ (4 marks made by #2 pencil) by hands while leaving great opportunity for a typo or other kinds of mistakes. With the introduction of direct printing on Scantron sheets these problems no longer affect the preparation phase. 
 
-- **Questions** tab allows to edit _tournament questions_, which is to specify _category_ and answer _key_ for every given question. There are 40 questions ranging 5 different categories and allowing 5 possible answers with only one answer being considered as correct. 
+-	**Questions** tab allows to edit _tournament questions_, which is to specify _category_ and answer _key_ for every given question. There are 40 questions ranging 5 different categories and allowing 5 possible answers with only one answer being considered as correct. 
 
- An exampled view of the _Questions_ tab is illustrated on this screenshot: [http://nimb.ws/3j1nQJ](http://nimb.ws/3j1nQJ)
+	An exampled view of the _Questions_ tab is illustrated on this screenshot: [http://nimb.ws/3j1nQJ](http://nimb.ws/3j1nQJ)
 
-- **Scantron** tab allows to interact with **Scantron controller** discussed in the [dedicated section of this document](#pitron-mdash-a-raspberry-flavored-scantron-controller) below. Also it allows to edit a set of scan records currently stored in the database. Taking into account the possibility of submitting duplicated scan records, the interface introduces 2 ways of uploading scan data to the database: 
+-	**Scantron** tab allows to interact with **Scantron controller** discussed in the [dedicated section of this document](#pitron-mdash-a-raspberry-flavored-scantron-controller) below. Also it allows to edit a set of scan records currently stored in the database. Taking into account the possibility of submitting duplicated scan records, the interface introduces 2 ways of uploading scan data to the database: 
 	
 	- Submit the data while _skipping_ duplicates
 	- Submit the data while _overriding_ duplicates
 
- An exampled view of the _Scantron_ tab is illustrated on this screenshot: [http://nimb.ws/L1SoPF](http://nimb.ws/L1SoPF)
+	An exampled view of the _Scantron_ tab is illustrated on this screenshot: [http://nimb.ws/L1SoPF](http://nimb.ws/L1SoPF)
 
-- **Results** tab mimics presentation of the **Results** page available at `/stats` while adding a number of extra features
+-	**Results** tab mimics presentation of the **Results** page available at `/stats` while adding a number of extra features
 	
-	- Tournament results processing **log** that includes information on _processing errors_ and a list of _no show_ students. The _no show_ list can be filtered with respect to _student id_ or _student name_.
-	- Ability to augment tournament results by associating "ciphering total" value assigned to each team on the basis of team-level competition. 
+	-	Tournament results processing **log** that includes information on _processing errors_ and a list of _no show_ students. The _no show_ list can be filtered with respect to _student id_ or _student name_.
+	-	Ability to augment tournament results by associating "ciphering total" value assigned to each team on the basis of team-level competition. 
 
- An exampled view of the _Results_ tab is illustrated on this screenshot: [http://nimb.ws/6ivMpb](http://nimb.ws/6ivMpb)
-
+	An exampled view of the _Results_ tab is illustrated on this screenshot: [http://nimb.ws/6ivMpb](http://nimb.ws/6ivMpb)
 
 <a id="markdown-pitron-mdash-a-raspberry-flavored-scantron-controller" name="pitron-mdash-a-raspberry-flavored-scantron-controller"></a>
 ## PiTron &mdash; a Raspberry Flavored Scantron Controller
