@@ -9,3 +9,8 @@ h2:not(:first-child) {
 h2 ~ p {
 	padding-left: 2em;
 }
+
+h2 ~ ul,
+h2 ~ ol {
+	padding-left: 5em;
+}

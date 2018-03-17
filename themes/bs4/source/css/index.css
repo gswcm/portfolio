@@ -22,7 +22,7 @@
 	}
 }
 
-@media (min-aspect-ratio: 16/10) {
+@media (min-aspect-ratio: 16/10) and (max-width: 900px) {
 	.title {
 		left: 10vw;
 		top: 5vh;

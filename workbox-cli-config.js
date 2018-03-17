@@ -1,6 +1,6 @@
 module.exports = {
 	globDirectory: "./public/",
-	globPatterns: ["**/*.html", "**/*.js", "**/*.css", "**/*.png"],
+	globPatterns: ["**/*.html", "**/*.js", "**/*.css", "**/*.png", "**/*.webp"],
 	swDest: "public/sw.js",
 	clientsClaim: true,
 	skipWaiting: true,
