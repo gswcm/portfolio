@@ -85,7 +85,7 @@ I started the HMT project in the beginning of Fall 2017, and at that time, I alr
 - **Nodemailer** for e-mail delivery.
 - **Socket.io** for asynchronous communication with Scantron controller.
 - **Vue.js** as the main frontend framework with _vue_router_, _vuex_, _vue-recaptcha_, _vue_axios_ to name just a few supporting components.
-- **Bootstrap 4** for frontend styling. Actually I used a mixture of **bootstrap-vue** for augmented components, and pure **bootstrap** classes for precise tuning of the interface.
+- **Bootstrap 4** for frontend styling. Actually I used a mixture of **bootstrap-vue** for vue-styled components, and pure **bootstrap** classes for precise tuning of the interface.
 - **Webpack 3** for frontend bundling. Majority of Webpack configurations I built by following [SurviveJS Webpack](https://leanpub.com/survivejs-webpack) guide by _Juho Vepsäläinen et al_.
 - **Font awesome 5** (free) for icons.
 - **Google Web Fonts** (Roboto mono) for interface styling.

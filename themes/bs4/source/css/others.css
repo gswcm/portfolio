@@ -6,11 +6,12 @@ h2:not(:first-child) {
 	margin-top: 1.5em;
 }
 
-h2 ~ p {
-	padding-left: 2em;
-}
-
-h2 ~ ul,
-h2 ~ ol {
-	padding-left: 5em;
+@media (min-width: 420px) {
+	h2 ~ p {
+		padding-left: 2em;
+	}
+	h2 ~ ul,
+	h2 ~ ol {
+		padding-left: 5em;
+	}
 }
