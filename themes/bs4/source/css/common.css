@@ -1,7 +1,6 @@
 html, body {
 	margin: 0;
 	padding: 0;
-	/* height: 100vh; */
 }
 .navbar-brand .fa-home {
 	color: rgba(0,0,0,0.5);

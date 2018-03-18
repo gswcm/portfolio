@@ -14,13 +14,13 @@ navItem: nav-item-project
 	- [URLs and deployment](#urls-and-deployment)
 	- [Normal user workflow](#normal-user-workflow)
 	- [Admin user workflow](#admin-user-workflow)
-		- [Who is an admin?](#who-is-an-admin)
+		- [Admin role](#admin-role)
 		- [Access of the admin interface](#access-of-the-admin-interface)
 		- [Authentication mechanism](#authentication-mechanism)
 		- [Admin interface features](#admin-interface-features)
 	- [Responsive design](#responsive-design)
 	- [Known issues](#known-issues)
-- [PiTron &mdash; a Raspberry Flavored Scantron Controller](#pitron-mdash-a-raspberry-flavored-scantron-controller)
+- [piTron &mdash; Scantron driven by RasPi](#pitron-mdash-scantron-driven-by-raspi)
 
 <!-- /TOC -->
 
@@ -49,8 +49,6 @@ Before I joined the project the following workflow was used:
 <a id="markdown-year-1" name="year-1"></a>
 ### Year 1
 I joined the project in 2015 and reworked the _registration form_ to support **front-end validation**. It was the time when I just started learning web technology so I implemented the task using [jQuery UI](https://jqueryui.com/). I ended up with constructing a landing page with modal dialog that was collecting form data and pushing it to PHP backend for processing. Our processing was as simple as it can be: (i) calculate the total cost; (ii) send out two customized  e-mails: one to team sponsor and one to organizers. 
-
-<!-- Unfortunately, the only trace of that version's existence in [Web Archive](http://web.archive.org/web/20160730231809/https://hmt.gswcm.net/) shows the "Registration Closed" banner. -->
 
 <a id="markdown-year-2" name="year-2"></a>
 ### Year 2
@@ -104,7 +102,7 @@ I started the HMT project in the beginning of Fall 2017, and at that time, I alr
 
 The live version of the HMT Project website is avaiulable at [https://hmt.gswcm.net](https://hmt.gswcm.net). The registration is currently closed but tournament results can be observed at [https://hmt.gswcm.net/stats](https://hmt.gswcm.net/stats).
 
-The GitHub project page is available at [https://github.com/gswcm/hmt.git](https://github.com/gswcm/hmt.git).
+The GitHub project page is available at [https://github.com/gswcm/hmt](https://github.com/gswcm/hmt).
 
 Deployment of the application should not face any bumps, but there are a number of issues that have to be carefully addressed:
 - The project requires Node.js v8.x, MongoDB at least v2.6. 
@@ -132,8 +130,8 @@ Once the form is completed and submitted, the registration is treated as _unconf
 <a id="markdown-admin-user-workflow" name="admin-user-workflow"></a>
 ### Admin user workflow
 
-<a id="markdown-who-is-an-admin" name="who-is-an-admin"></a>
-#### Who is an admin?
+<a id="markdown-admin-role" name="admin-role"></a>
+#### Admin role
 The _admin_ role is hardcoded to map selected e-mail addresses and is defined in `./backend/lib/admins.js` file. The _admin_ role is associated with _tournament organizer(s)_.
 
 <a id="markdown-access-of-the-admin-interface" name="access-of-the-admin-interface"></a>
@@ -152,7 +150,7 @@ It is worth stating that since credential data are passed to the backend with no
 
 <a id="markdown-admin-interface-features" name="admin-interface-features"></a>
 #### Admin interface features
-The _admin_ interface features 5 tabs:
+The _admin_ interface features 5 tabs, each responsible for a particular set of tasks:
 
 -	**Records** tab allows to work (add/delete/edit) with _team registrations_. Organizers can navigate through the collection of submitted registrations by means of setting up **flexible filters**. Any combination of the following criteria can be utilized to display a subset of all submitted registrations:
 
@@ -181,7 +179,7 @@ The _admin_ interface features 5 tabs:
 
 	An exampled view of the _Questions_ tab is illustrated on this screenshot: [http://nimb.ws/3j1nQJ](http://nimb.ws/3j1nQJ)
 
--	**Scantron** tab allows to interact with **Scantron controller** discussed in the [dedicated section of this document](#pitron-mdash-a-raspberry-flavored-scantron-controller) below. Also it allows to edit a set of scan records currently stored in the database. Taking into account the possibility of submitting duplicated scan records, the interface introduces 2 ways of uploading scan data to the database: 
+-	**Scantron** tab allows to interact with **Scantron controller** discussed in the [dedicated section of this document](#pitron-mdash-scantron-driven-by-raspi) below. Also it allows to edit a set of scan records currently stored in the database. Taking into account the possibility of submitting duplicated scan records, the interface introduces 2 ways of uploading scan data to the database: 
 	
 	- Submit the data while _skipping_ duplicates
 	- Submit the data while _overriding_ duplicates
@@ -208,17 +206,30 @@ The portal is designed to respect various devices ranging from a tiny screen of 
 
 <a id="markdown-known-issues" name="known-issues"></a>
 ### Known issues
-There are a number of **known issues** that I didn't have a chance to address:
+And last but not least, this project is known to have a number of issues summarized below:
 
--	A number of frontend parameters including specified _admin credentials_ are stored in the `vuex` store. This information is considered to be protected by `vuex` mechanisms as long the session is active, but in some situations this information can be (I presume) stollen from the store. 
+-	A number of frontend parameters including just entered _admin credentials_ are stored in the `vuex` store. This information is considered to be protected by `vuex` mechanisms as long the session is active, but in some situations this information can (I presume) be hijacked from the store upon session completion. 
 -	The e-mail feature is not configured to use any means of encryption.
 -	Various filters on _records_ tab of the _admin_ interface have never been tested against possible injection.
--	Connection to MongoDB server is not protected
--	Formal unit tests have never been developed
+-	Connection to MongoDB server is not protected. As long as the MongoDB server is hosted alongside with the app, it is not a big deal, but this issue needs to be fixed to prepare the project for in-cloud deployment.
+-	Formal unit tests have yet to be developed.
 
-<a id="markdown-pitron-mdash-a-raspberry-flavored-scantron-controller" name="pitron-mdash-a-raspberry-flavored-scantron-controller"></a>
-## PiTron &mdash; a Raspberry Flavored Scantron Controller
+<a id="markdown-pitron-mdash-scantron-driven-by-raspi" name="pitron-mdash-scantron-driven-by-raspi"></a>
+## piTron &mdash; Scantron driven by RasPi
+The **HMT Project** wouldn't be complete without ability to automate scanning process. While working on HMT portal I hoped to re-use the previously developed Scantron controller (see [above](#year-2)) after minor adjustment... but that was not going to happen. I couldn't accept my own code styling, classes organization, pretty much everything except the core implementation of the controller logic. Moreover, the `serialport` project has evolved from v4 to v6 and many things that my implementation relied upon became non-functional. 
+
+I decided to rework the entire piTron project to have 
+
+-	latest Node, SerialPort, Express on the backend
+-	Vue + Bootstrap bundled by Webpack on the frontend
+-	Socket.io for all asynchronous communications, including delivery of scanned data to the HMT portal. 
+
+The renewed piTron also featured **Scantron Simulator** &mdash; yet another SerialPort based JS class mimicing lifecycles of a real Scantron. Having both **piTron** and **Scantron Simulator**  connected on the hardware level (GND-GND, Tx-Rx, Rx-Tx) I managed to debug piTron logic and its UI without running actual scans. 
+
+The piTron project has its own GitHub repo available at [https://github.com/gswcm/pitron](https://github.com/gswcm/pitron).
+
+The following video demonstrates **piTron + HMT** bundle in action.
 
 <div class="embed-responsive embed-responsive-16by9">
-	<iframe class="embed-responsive-item" src="https://www.youtube.com/embed/udKcM9PIrSc" allowfullscreen></iframe>
+	<iframe class="embed-responsive-item" src="https://www.youtube.com/embed/udKcM9PIrSc?ecver=2" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 </div>
