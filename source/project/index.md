@@ -11,13 +11,15 @@ navItem: nav-item-project
 	- [Year 2](#year-2)
 - [The HMT Project](#the-hmt-project)
 	- [Technology](#technology)
-	- [URLs and Deployment](#urls-and-deployment)
+	- [URLs and deployment](#urls-and-deployment)
 	- [Normal user workflow](#normal-user-workflow)
 	- [Admin user workflow](#admin-user-workflow)
 		- [Who is an admin?](#who-is-an-admin)
 		- [Access of the admin interface](#access-of-the-admin-interface)
 		- [Authentication mechanism](#authentication-mechanism)
 		- [Admin interface features](#admin-interface-features)
+	- [Responsive design](#responsive-design)
+	- [Known issues](#known-issues)
 - [PiTron &mdash; a Raspberry Flavored Scantron Controller](#pitron-mdash-a-raspberry-flavored-scantron-controller)
 
 <!-- /TOC -->
@@ -98,7 +100,7 @@ I started the HMT project in the beginning of Fall 2017, and at that time, I alr
 - **jsPDF** for generating PDF graphics printed directly on Scantron sheets.
 
 <a id="markdown-urls-and-deployment" name="urls-and-deployment"></a>
-### URLs and Deployment 
+### URLs and deployment 
 
 The live version of the HMT Project website is avaiulable at [https://hmt.gswcm.net](https://hmt.gswcm.net). The registration is currently closed but tournament results can be observed at [https://hmt.gswcm.net/stats](https://hmt.gswcm.net/stats).
 
@@ -108,10 +110,13 @@ Deployment of the application should not face any bumps, but there are a number 
 - The project requires Node.js v8.x, MongoDB at least v2.6. 
 - The app is configured to be served by **Nginx** running as a reverse proxy server. The Nginx config file is available in `/configs/nginx`. The configuration assumes that repo either is cloned into `/var/www/app` or a symbolic link `/var/www/app` points to a real location of repo files. 
 - Registration form uses [Invisible reCAPTCHA](https://developers.google.com/recaptcha/docs/invisible) that requires `reCAPTCHA_KEY` and `reCAPTCHA_SECRET` environment variables set with values configured on [http://www.google.com/recaptcha/admin](http://www.google.com/recaptcha/admin) page.
-- Emailing feature uses Amazon S3 storage to handle image delivery, so `S3_KEY` and `S3_SECRET` environment variables have to be set to store corresponding values for S3 bucket.
+- Emailing feature uses Amazon S3 storage to handle image delivery, so `S3_KEY` and `S3_SECRET` environment variables have to be set to store corresponding values for S3 bucket named `hmt.gswcm.net`. Bucket name can be modified in `./backend/lib/mailer.js` file.
+- Emailing feature relies upon SMTP server that is currently configured as `smtp.gswcm.net` in `./backend/lib/mailer.js` file.  
 - After installing **Node** and **MongoDB** server, cloning the GitHub repo, and setting up environment variables all dependencies can be installed in a straightforward manner by running `npm i`
-- The app can be started from the repo directory by running `node ./bin/www.js`. 
-- Permanent installation can be achieved, for instance, by using globally installed `pm2` NPM package.
+- The frontend bundle needs to be compiled every time after retrieving repo files from GitHub. It can be done by running `npm run build` from the repo directory.
+- The app can be started in the _production_ mode by running `node ./bin/www.js` or simply `nodemon` from the repo directory. 
+- The app can be started in the _development_ mode by running `NODE_ENV=development nodemon` from the repo directory.
+- Permanent installation of the app can be achieved, for instance, by using globally installed `pm2` NPM package and using it to create a form of startup script.
 
 <a id="markdown-normal-user-workflow" name="normal-user-workflow"></a>
 ### Normal user workflow
@@ -190,5 +195,30 @@ The _admin_ interface features 5 tabs:
 
 	An exampled view of the _Results_ tab is illustrated on this screenshot: [http://nimb.ws/6ivMpb](http://nimb.ws/6ivMpb)
 
+-	**Maintenance** tab alows to perform various maintenance tasks like removing stale (unused) accounts, re-shaping collection of team registrations, rolling over the application for the next year tournament, and setting up date of the tournament event that affects appearance of many portal components. 
+
+	An exampled view of the _Maintenance_ tab is illustrated on this screenshot: [http://nimb.ws/MnxCa1](http://nimb.ws/MnxCa1)
+
+<a id="markdown-responsive-design" name="responsive-design"></a>
+### Responsive design
+
+The portal is designed to respect various devices ranging from a tiny screen of _iPhone 5_ to extra large screen of a modern desktop computer. All heavy lifting is implemented by utilizing various layout classes of Bootstrap 4. Here are a few examples of how _admin_ UI is modeled to look on iPhone 7:
+-	Records tab [http://nimb.ws/50Zjvx](http://nimb.ws/50Zjvx)
+-	Results tab [http://nimb.ws/8VPgQI](http://nimb.ws/8VPgQI)
+
+<a id="markdown-known-issues" name="known-issues"></a>
+### Known issues
+There are a number of **known issues** that I didn't have a chance to address:
+
+-	A number of frontend parameters including specified _admin credentials_ are stored in the `vuex` store. This information is considered to be protected by `vuex` mechanisms as long the session is active, but in some situations this information can be (I presume) stollen from the store. 
+-	The e-mail feature is not configured to use any means of encryption.
+-	Various filters on _records_ tab of the _admin_ interface have never been tested against possible injection.
+-	Connection to MongoDB server is not protected
+-	Formal unit tests have never been developed
+
 <a id="markdown-pitron-mdash-a-raspberry-flavored-scantron-controller" name="pitron-mdash-a-raspberry-flavored-scantron-controller"></a>
 ## PiTron &mdash; a Raspberry Flavored Scantron Controller
+
+<div class="embed-responsive embed-responsive-16by9">
+	<iframe class="embed-responsive-item" src="https://www.youtube.com/embed/udKcM9PIrSc" allowfullscreen></iframe>
+</div>
