@@ -1,0 +1,35 @@
+doctype html
+html(lang="en")
+	head
+		include _partial/head
+		style.
+			html, body {
+				height: 100%;
+			}
+			p, li {
+				text-align: justify;
+			}
+	body
+		div.container.h-100.d-flex.flex-column.justify-content-around
+			header
+				p 
+				| #{page.companyName} #[br]
+				| #{page.companyAddress1} #[br]
+				| #{page.companyAddress2} #[br]
+
+			article
+				p 
+				| #[span.h5 Dear #{page.salutation || 'HR Manager'}:] #[br]#[br]
+				| !{page.content}
+
+			footer
+				p Sincerely, 
+				address
+				| Simon Baev #[br]
+				| 1314 Elm Ave, Apt 5 #[br]
+				| Americus, GA 31709 #[br]
+				| Phone: (229) 942-5511 #[br]
+				| E-Mail: simonbaev@gmail.com #[br]
+				| Web: https://baev.work
+		
+		script(src="/js/service-worker-registration.js")
