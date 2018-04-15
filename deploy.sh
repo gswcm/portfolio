@@ -1,5 +1,5 @@
 hexo generate -f
-workbox generate:sw
+workbox generateSW
 hexo deploy
 
 

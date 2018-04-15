@@ -24,6 +24,6 @@ module.exports = {
 		{
 			urlPattern: /^https:\/\/code\.jquery\.com\/jquery-3/,
 			handler: "networkFirst"
-		},
+		}
 	]
 };
